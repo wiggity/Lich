@@ -515,18 +515,18 @@ class SynchronizedSocket
 		@delegate = o
 		@mutex = ::Mutex.new
 	end
-	def puts(*args, &block)
+	def puts(*args)
 		@mutex.synchronize {
-			@delegate.puts *args, &block
+			@delegate.puts *args
 		}
 	end
 	def write(*args)
 		@mutex.synchronize {
-			@delegate.write *args, &block
+			@delegate.write *args
 		}
 	end
-	def method_missing(method, *args, &block)
-		@delegate.__send__ method, *args, &block
+	def method_missing(method, *args)
+		@delegate.__send__ method, *args
 	end
 end
 
